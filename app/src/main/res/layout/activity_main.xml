@@ -5,16 +5,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     >
 
-    <data>
-        <variable
-            name="mainviewmodel"
-            type="com.example.getsome.TestViewmodel" />
-    </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:background="@color/black">
+    android:background="#000000">
 
 
     <VideoView
@@ -30,24 +25,24 @@
 
     </VideoView>
 
-
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintBottom_toTopOf="@+id/googlesignInButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/myvideo"
-        app:layout_constraintTop_toTopOf="@+id/myvideo"
-        app:layout_constraintVertical_bias="0.77">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.723">
 
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@drawable/ic_klarna"
-            android:layout_marginRight="10dp">
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_applogo">
 
         </ImageView>
 
@@ -57,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/vampiro_one"
-            android:text="@{mainviewmodel.liveData}"
+            android:text="GtSm"
             android:textColor="@color/white"
             android:textSize="30sp">
 
@@ -67,9 +62,43 @@
     </LinearLayout>
 
     <LinearLayout
-        android:onClick="@{()-> mainviewmodel.dataupdate()}"
-        android:id="@+id/linearLayout"
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/googlesignInButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        >
+
+        <EditText
+
+            android:id="@+id/email_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFC0CB"
+            android:hint="email"
+            android:minHeight="48dp"
+            android:textColorHint="#FFFFFF">
+
+        </EditText>
+        <EditText
+            android:id="@+id/passworduser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFC0CB"
+            android:hint="password"
+            android:minHeight="48dp"
+            android:textColorHint="#FFFFFF">
+
+        </EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/googlesignInButton"
+        android:layout_width="180dp"
         android:layout_height="50dp"
         android:background="@drawable/ic_rectangle_10"
         android:gravity="center"
@@ -77,22 +106,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/myvideo"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.839">
-
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/google_button">
-
-        </ImageView>
 
         <TextView
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/krona_one"
-            android:text="Sign in with google"
+            android:text="Login"
             android:textColor="@color/white"
             android:textSize="15sp">
 
@@ -100,16 +122,46 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:weightSum="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/googlesignInButton">
+
+        <TextView
+            android:gravity="center"
+            android:layout_weight="0.5"
+            android:textColor="@color/white"
+            android:text="ForgetPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+        <TextView
+            android:id="@+id/newuser"
+            android:gravity="center"
+            android:layout_weight="0.5"
+            android:textColor="@color/white"
+            android:text="New User?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        </TextView>
+
+    </LinearLayout>
 
     <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Designed by Apple Infotech Isa Marked\n            all section reserved with ISO"
+        android:text="Designed by Shivam Sharma In India\n       all section reserved with ISO"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+        app:layout_constraintTop_toBottomOf="@+id/googlesignInButton"
+        app:layout_constraintVertical_bias="0.78">
 
     </TextView>
 
