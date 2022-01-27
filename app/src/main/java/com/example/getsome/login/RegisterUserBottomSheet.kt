@@ -8,50 +8,49 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.viewbinding.ViewBinding
 import com.example.getsome.R
-import com.example.getsome.databinding.RegisteredUserBottomsheetBinding
+import com.example.getsome.databinding.RegisterNewUserBottomsheetBinding
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
-import java.util.*
+
 
 class RegisterUserBottomSheet : BottomSheetDialogFragment() {
 
-    var firebaseAuth = FirebaseAuth.getInstance()
-     var bottomSheetlister: BottomsheetListner? = null
 
-    lateinit var viewBinding :RegisteredUserBottomsheetBinding
+    lateinit var viewBinding:RegisterNewUserBottomsheetBinding
+    var firebaseAuth = FirebaseAuth.getInstance()
+    var bottomSheetlister: BottomsheetListner? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-         super.onCreateView(inflater, container, savedInstanceState)
-           viewBinding = RegisteredUserBottomsheetBinding.bind(inflater.inflate(R.layout.registered_user_bottomsheet,container,false))
+    ): View {
+        super.onCreateView(inflater, container, savedInstanceState)
+         viewBinding = RegisterNewUserBottomsheetBinding.bind(inflater.inflate(R.layout.register_new_user_bottomsheet
+         ,container,false))
 
-             viewBinding.rgbutton.setOnClickListener(View.OnClickListener {
+             viewBinding.registerBtn.setOnClickListener(View.OnClickListener {
                  Log.d("BottomSheet","Clicked")
-                   viewBinding.rgbutton.startLoading()
-                 //  viewBinding.rgbutton.isClickable = false
-
+                   viewBinding.registerBtn.startLoading()
+          viewBinding.registerBtn.isClickable = false
                newAccountcreater()
              })
 
-
-             return viewBinding.root
+        return viewBinding.root
     }
+
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-          bottomSheetlister  =  if (context is BottomsheetListner){
-              context
-          }else{
-              throw RuntimeException(
-                  context.toString()+"Method Must Implemented"
-              )
-          }
+        bottomSheetlister = if (context is BottomsheetListner) {
+            context
+        } else {
+            throw RuntimeException(
+                context.toString() + "Method Must Implemented"
+            )
+        }
     }
 
     interface BottomsheetListner{
@@ -68,7 +67,7 @@ class RegisterUserBottomSheet : BottomSheetDialogFragment() {
                  if (it.isSuccessful){
                      Log.d("RegisteredSc","Listener")
                      val handler = Handler()
-                     viewBinding.rgbutton.doResult(isSucceed = true)
+                     viewBinding.registerBtn.doResult(isSucceed = true)
                      handler.postDelayed(Runnable { // Do something after 5s = 5000ms
                          bottomSheetlister?.onclicklistnerBS("yes")
                      }, 2000)

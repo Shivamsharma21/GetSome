@@ -14,6 +14,7 @@ import com.example.getsome.login.RegisterUserBottomSheet
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity(),RegisterUserBottomSheet.BottomsheetListner {
+
     var bottomSheetDialogFragment = RegisterUserBottomSheet()
     lateinit var firebaseAuth: FirebaseAuth
     var state:Int = 1
@@ -37,6 +38,7 @@ class LoginActivity : AppCompatActivity(),RegisterUserBottomSheet.BottomsheetLis
         viewBinding.newuser.setOnClickListener {
             bottomSheetDialogFragment.show(supportFragmentManager,"Reg")
         }
+
 
     }
 
