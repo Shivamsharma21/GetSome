@@ -1,4 +1,4 @@
-package com.example.getsome.login.splash
+package com.example.getsome.splash
 
 class SplashViewModel {
 }

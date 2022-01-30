@@ -18,13 +18,24 @@
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
     </VideoView>
 
+    <ProgressBar
+        android:visibility="invisible"
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/myvideo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </ProgressBar>
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
@@ -72,28 +83,49 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
         >
-
-        <EditText
-
-            android:id="@+id/email_user"
+        <LinearLayout
+            android:background="@drawable/ic_whitebuttonbg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFC0CB"
-            android:hint="email"
-            android:minHeight="48dp"
-            android:textColorHint="#FFFFFF">
+            android:layout_height="wrap_content">
+            <EditText
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="10dp"
+                android:padding="10dp"
+                android:id="@+id/email_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFC0CB"
+                android:hint="chiristine@gmail.com"
+                android:background="@null"
+                android:minHeight="48dp"
+                android:textColor="#FFFFFF"
+                android:textColorHint="#D3D3D3">
 
-        </EditText>
-        <EditText
-            android:id="@+id/passworduser"
+            </EditText>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_whitebuttonbg"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#FFC0CB"
-            android:hint="password"
-            android:minHeight="48dp"
-            android:textColorHint="#FFFFFF">
+            android:layout_height="wrap_content">
+            <EditText
 
-        </EditText>
+                android:layout_marginStart="17dp"
+                android:layout_marginEnd="10dp"
+                android:background="@null"
+                android:textColorHint="#D3D3D3"
+                android:id="@+id/passworduser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#FFC0CB"
+                android:hint="*******"
+                android:minHeight="48dp"
+                android:textColor="#FFFFFF"
+                >
+
+            </EditText>
+        </LinearLayout>
+
     </LinearLayout>
 
     <LinearLayout

@@ -71,8 +71,6 @@ class RegisterUserBottomSheet : BottomSheetDialogFragment() {
                      handler.postDelayed(Runnable { // Do something after 5s = 5000ms
                          bottomSheetlister?.onclicklistnerBS("yes")
                      }, 2000)
-
-
                  }else{
                     Log.d("EX",it.exception.toString())
                  }

@@ -1,4 +1,5 @@
-package com.example.getsome.login.splash
+package com.example.getsome.splash
 
 interface SplashInterface {
+    fun goToLoginActivity()
 }
