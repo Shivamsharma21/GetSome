@@ -13,6 +13,7 @@ class SplashActivity : AppCompatActivity(),SplashInterface {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.splash_screen_layout)
+      goToLoginActivity()
     }
     override fun goToLoginActivity() {
         val hanler = Handler()

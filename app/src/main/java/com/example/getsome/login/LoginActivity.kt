@@ -1,8 +1,6 @@
 package com.example.getsome
 
-import android.app.Activity
 import android.content.Intent
-import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
@@ -14,50 +12,75 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.example.getsome.dashboard.WelcomeScreen
 import com.example.getsome.databinding.ActivityMainBinding
+import com.example.getsome.login.LoginInterface
 import com.example.getsome.login.RegisterUserBottomSheet
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
-import java.util.*
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
-class LoginActivity : AppCompatActivity(),RegisterUserBottomSheet.BottomsheetListner {
+/* user state is used to identify that is user is new or not
+    if the state is = 0 that mean user is new or if user state
+    is 1 that mean user is already registered
+*/
+class LoginActivity : AppCompatActivity(),RegisterUserBottomSheet.BottomsheetListner,LoginInterface {
 
-    lateinit var activity: Activity
-    var bottomSheetDialogFragment = RegisterUserBottomSheet()
-    lateinit var firebaseAuth: FirebaseAuth
-    var state: Int = 1
-    lateinit var viewBinding: ActivityMainBinding
+    lateinit var firebasedatabase:FirebaseDatabase
+    lateinit var databaseReference: DatabaseReference
+    private var bottomSheetDialogFragment = RegisterUserBottomSheet()
+    private lateinit var firebaseAuth: FirebaseAuth
+    private var state: Int = 1
+    private var user_state:Int=1
+    private lateinit var viewBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        activity = this
-
-        var timer = Timer()
         firebaseAuth = FirebaseAuth.getInstance()
+        firebasedatabase = FirebaseDatabase.getInstance()
+        databaseReference = firebasedatabase.getReference("Users")
 
         viewBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         supportActionBar?.hide()
-        loginbackground()
+        loginbackground() // setting up th login background screens
 
         viewBinding.googlesignInButton.setOnClickListener {
-            Log.d("BUTTONCLICKED", "clicked")
+            Log.d("Login Button","Clicked")
             viewBinding.progressBar.visibility = VISIBLE
-            loginUser()
-
+            Allowusertologin() // help user to login
         }
 
         viewBinding.newuser.setOnClickListener {
+            user_state = 0
             bottomSheetDialogFragment.show(supportFragmentManager, "Reg")
         }
+    }  //// onCreate
 
-
+    override fun Allowusertologin() {
+        firebaseAuth.signInWithEmailAndPassword(
+            viewBinding.emailUser.text.toString(), viewBinding.passworduser.text.toString()
+        ).addOnCompleteListener {
+            if (it.isSuccessful) {
+                val handler = Handler()
+                handler.postDelayed({
+                    viewBinding.progressBar.visibility = INVISIBLE
+                },3000)
+                handler.postDelayed({
+                 takingToDashboard()
+                },2000)
+                // here you're are handling the the user is sing in
+                Toast.makeText(this, "User SignIN", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
-    fun loginbackground() {
-        var videopath: String = "android.resource://" + packageName + "/" + R.raw.firstvideo
-        var videopath2: String = "android.resource://" + packageName + "/" + R.raw.secondvideo
 
-        var uri = Uri.parse(videopath)
+    override fun loginbackground() {
+        val videopath: String = "android.resource://" + packageName + "/" + R.raw.firstvideo
+        val videopath2: String = "android.resource://" + packageName + "/" + R.raw.secondvideo
+
+        val uri = Uri.parse(videopath)
         viewBinding.myvideo.setVideoURI(uri)
 
         viewBinding.myvideo.setOnPreparedListener {
@@ -67,7 +90,7 @@ class LoginActivity : AppCompatActivity(),RegisterUserBottomSheet.BottomsheetLis
         }
         viewBinding.myvideo.start()
 
-        viewBinding.myvideo.setOnCompletionListener(MediaPlayer.OnCompletionListener {
+        viewBinding.myvideo.setOnCompletionListener {
             if (state == 1) {
                 it.reset() // second vid
                 viewBinding.myvideo.setVideoPath(videopath2)
@@ -79,30 +102,15 @@ class LoginActivity : AppCompatActivity(),RegisterUserBottomSheet.BottomsheetLis
                 viewBinding.myvideo.start()
                 state = 1
             }
-        })
+        }
     }
 
-    fun loginUser() {
+    override fun takingToDashboard() {
+        val intent = Intent(this, WelcomeScreen::class.java)
+         intent.putExtra("UserState",user_state)
+        Log.d("Intent", "PassingState $user_state")
+         startActivity(intent)
 
-        firebaseAuth.signInWithEmailAndPassword(
-            viewBinding.emailUser.text.toString(), viewBinding.passworduser.text.toString()
-        ).addOnCompleteListener {
-            if (it.isSuccessful) {
-                var intent = Intent(this, WelcomeScreen::class.java)
-
-                val handler = Handler()
-                handler.postDelayed(Runnable {
-                    viewBinding.progressBar.visibility = INVISIBLE
-                },3000)
-                handler.postDelayed(Runnable {
-                    startActivity(intent)
-                },2000)
-                // here youre are handling theat the user is sing in
-                Toast.makeText(this, "User SignIN", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 
     override fun onclicklistnerBS(value: String) {

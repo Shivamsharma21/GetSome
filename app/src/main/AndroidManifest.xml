@@ -17,6 +17,9 @@
         <activity android:name=".dashboard.WelcomeScreen">
 
         </activity>
+        <activity android:name=".userprofile.UserProfileActivity">
+
+        </activity>
         <activity android:name=".splash.SplashActivity"
             android:exported="true">
             <intent-filter>

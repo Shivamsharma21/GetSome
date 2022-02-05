@@ -14,6 +14,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 
 
+/// this is the bottom sheet used to help user to get register  ///
+
 class RegisterUserBottomSheet : BottomSheetDialogFragment() {
 
 
@@ -30,7 +32,6 @@ class RegisterUserBottomSheet : BottomSheetDialogFragment() {
         super.onCreateView(inflater, container, savedInstanceState)
          viewBinding = RegisterNewUserBottomsheetBinding.bind(inflater.inflate(R.layout.register_new_user_bottomsheet
          ,container,false))
-
              viewBinding.registerBtn.setOnClickListener(View.OnClickListener {
                  Log.d("BottomSheet","Clicked")
                    viewBinding.registerBtn.startLoading()
@@ -40,8 +41,6 @@ class RegisterUserBottomSheet : BottomSheetDialogFragment() {
 
         return viewBinding.root
     }
-
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         bottomSheetlister = if (context is BottomsheetListner) {
@@ -57,6 +56,7 @@ class RegisterUserBottomSheet : BottomSheetDialogFragment() {
         fun onclicklistnerBS(value:String)
     }
 
+       // help to create a new account of a user  //
         fun newAccountcreater(){
             if (TextUtils.isEmpty(viewBinding.newEmail.text)&&
                 (TextUtils.isEmpty(viewBinding.newPassword.text))){
@@ -79,4 +79,5 @@ class RegisterUserBottomSheet : BottomSheetDialogFragment() {
         }
 
         }
+    override fun getTheme() = R.style.CustomBottomSheetDialogTheme
 }
