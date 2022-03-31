@@ -43,7 +43,7 @@ dependencies {
 
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.1'
     implementation 'com.google.firebase:firebase-database:20.0.3'
-    var roomVersion = "2.4.1"
+
     var lifecycle_version = "2.4.0"
     // Lifecycles only (without ViewModel or LiveData)
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version")
@@ -51,17 +51,13 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
     // LiveData
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
-    // Room dependency
-    implementation("androidx.room:room-runtime:$roomVersion")
+
     // To use Kotlin annotation processing tool (kapt)
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+
 
     implementation 'com.github.timonknispel:KTLoadingButton:1.2.0'
-    kapt("androidx.room:room-compiler:$roomVersion")
-
-    // optional - Kotlin Extensions and Coroutines support for Room
-    implementation("androidx.room:room-ktx:$roomVersion")
-
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0")
 
     implementation 'de.hdodenhof:circleimageview:3.1.0'

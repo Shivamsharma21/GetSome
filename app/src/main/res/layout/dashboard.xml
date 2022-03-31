@@ -5,14 +5,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LoginActivity"
-    android:gravity="center">
-
-    <TextView
-        android:text="Welocme tho Get Some"
-        android:id="@+id/tvll"
-        android:gravity="center"
-        android:layout_width="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+    <androidx.appcompat.widget.SearchView
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </TextView>
+    </androidx.appcompat.widget.SearchView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/cloths"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

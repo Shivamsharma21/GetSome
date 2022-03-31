@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+ <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/img2"
+                android:src="@drawable/clothsavg"
+                android:layout_width="match_parent"
+                android:layout_height="300dp">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/text2"
+                android:layout_gravity="center"
+                android:textSize="20sp"
+                android:text="This IS Brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            </TextView>
+        </LinearLayout>

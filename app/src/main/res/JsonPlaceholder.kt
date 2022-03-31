@@ -1,0 +1,1 @@
+class JsonPlaceholder : ArrayList<JsonPlaceholderItem>()

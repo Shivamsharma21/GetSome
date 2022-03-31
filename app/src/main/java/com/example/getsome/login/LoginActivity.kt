@@ -14,7 +14,6 @@ import com.example.getsome.dashboard.WelcomeScreen
 import com.example.getsome.databinding.ActivityMainBinding
 import com.example.getsome.login.LoginInterface
 import com.example.getsome.login.RegisterUserBottomSheet
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -106,9 +105,9 @@ class LoginActivity : AppCompatActivity(),RegisterUserBottomSheet.BottomsheetLis
     }
 
     override fun takingToDashboard() {
-        val intent = Intent(this, WelcomeScreen::class.java)
+              val intent = Intent(this, WelcomeScreen::class.java)
          intent.putExtra("UserState",user_state)
-        Log.d("Intent", "PassingState $user_state")
+              Log.d("Intent", "PassingState $user_state")
          startActivity(intent)
 
     }
